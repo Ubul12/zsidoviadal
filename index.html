@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jewer Defense</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=Special+Elite&family=Stardos+Stencil:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <header class="top">
+    <h1>Jewer Defense</h1>
+    <div id="hud" class="hud" role="group" aria-label="Status">
+      <div class="chip lvl"><small>Level</small><b id="lvlName">-</b></div>
+      <div class="chip"><small>Lives</small><b id="lives">0</b></div>
+      <div class="chip gold"><small>Gold</small><b id="gold">0</b></div>
+      <div class="chip"><small>Wave</small><b id="wave">0</b></div>
+      <div class="chip season autumn" id="seasonChip"><small>Season</small><b id="season">Autumn</b></div>
+      <div class="chip"><small>Best</small><b id="best">0</b></div>
+      <button id="menuBtn" class="btn" type="button">Levels</button>
+    </div>
+  </header>
+
+  <section id="menu" class="menu">
+    <div class="menu-head">
+      <h2>Choose a level</h2>
+      <button id="backBtn" class="btn primary" type="button" hidden>Back to game</button>
+    </div>
+    <div id="levels" class="levels"></div>
+    <p class="hint">Longer roads give you more time but start with tougher enemies. Your best wave is saved for each level. Autumn brings fallen leaves and litter, while Winter brings snow and slows enemies.</p>
+  </section>
+
+  <div id="stage" class="stage" hidden>
+    <div class="board">
+      <canvas id="c" role="img" aria-label="Game board: a winding road with towers beside it"></canvas>
+      <div id="msg" class="msg" role="status"></div>
+      <div id="over" class="overlay" hidden>
+        <div class="card">
+          <h2>Position lost</h2>
+          <p id="overText"></p>
+          <div class="row">
+            <button id="again" class="btn primary" type="button">Play again</button>
+            <button id="overMenu" class="btn" type="button">Levels</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <section class="panel">
+        <h2>Build</h2>
+        <div id="towers" class="towers"></div>
+      </section>
+
+      <section class="panel">
+        <h2 id="selTitle">Selected tower</h2>
+        <p id="selEmpty" class="hint" style="margin:0">Click a tower on the board to upgrade or sell it. Pick a tower above, then click a green tile to build.</p>
+        <div id="selBody" hidden>
+          <dl>
+            <dt>Damage</dt><dd id="sDmg"></dd>
+            <dt>Range</dt><dd id="sRng"></dd>
+            <dt>Fire rate</dt><dd id="sRate"></dd>
+            <dt id="sSlowT">Slow</dt><dd id="sSlow"></dd>
+            <dt>Level</dt><dd id="sLvl"></dd>
+          </dl>
+          <div class="row">
+            <button id="upBtn" class="btn" type="button">Upgrade</button>
+            <button id="sellBtn" class="btn" type="button">Sell</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Waves</h2>
+        <p id="preview" class="hint"></p>
+        <p id="winterNote" class="hint snow" hidden>Winter: enemies move 25% slower. Frost towers: +15% range, slow 50% → 65%, slow lasts longer.</p>
+        <div class="row">
+          <button id="pauseBtn" class="btn" type="button" aria-pressed="false">Pause</button>
+          <button id="speedBtn" class="btn" type="button">1×</button>
+        </div>
+      </section>
+
+      <p class="keys">Keys: 1–8 pick a tower · P pause · U upgrade · S sell · Esc cancel</p>
+    </aside>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
